@@ -1,0 +1,20 @@
+* text=auto
+
+*.c text eol=lf
+*.h text eol=lf
+*.s text eol=lf
+*.ld text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.ioc text eol=lf
+*.xml text eol=lf
+*.cfg text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.mp4 binary
+*.elf binary
+*.bin binary

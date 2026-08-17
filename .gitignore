@@ -1,0 +1,47 @@
+# Local assistant and IDE workspaces
+/.claude/
+/.cubeide-*/
+/.vscode/
+**/.idea/
+**/.metadata/
+
+# Local project-management records
+/visual_pick/AGENTS.md
+/visual_pick/task_plan.md
+/visual_pick/findings.md
+/visual_pick/progress.md
+
+# Python environments and caches
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# STM32CubeIDE generated output and local launch state
+**/Debug/
+**/Release/
+/visual_pick/*.launch
+/visual_pick/.settings/language.settings.xml
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.o
+*.obj
+*.d
+*.su
+*.cyclo
+*.log
+
+# Local test media (unreviewed for publication)
+/visual_pick/ff77135b285953678f26b3fdb0be1bfa.mp4
+
+# Operating-system files
+Thumbs.db
+Desktop.ini
+.DS_Store
