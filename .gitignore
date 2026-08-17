@@ -38,9 +38,6 @@
 *.cyclo
 *.log
 
-# Local test media (unreviewed for publication)
-/visual_pick/ff77135b285953678f26b3fdb0be1bfa.mp4
-
 # Operating-system files
 Thumbs.db
 Desktop.ini
