@@ -1,7 +1,13 @@
-# USART1 单舵机安全测试
+# PC 端视觉识别与串口控制
 
 当前固件只启动 TIM2_CH1 / PA0 上的一个 SG90。TIM2_CH2 / PA1 不启动，
-最终三位置范围为 1100/1500/1900 us，实际机械位置仍需装机标定。
+当前演示使用的三位置为 1100/1500/1900 us；更换舵机、舵盘或机构安装位置后应重新标定。
+
+## 程序入口
+
+- `visual_sort.py`：最终实机入口，包含背景差分、顶点分类、多帧投票、单件锁定和串口控制；
+- `serial_test.py`：回中与三位置串口安全测试；
+- `main.py`、`ui_main_window.py`、`detector.py`：早期 PySide6 GUI 与实验检测兼容路径，仍供辅助动画的真实适配器调用，但不代表最终分类算法。
 
 ## 接线
 
@@ -13,7 +19,7 @@
 | 红色电源线 | 独立稳定 5 V 正极 |
 | 棕/黑地线 | 独立 5 V GND，并与 STM32 GND 共地 |
 
-- 当前源码和本地 Debug 构建使用 **PA0 / TIM2_CH1**；板卡仍需重新烧录该固件。
+- 当前已验证固件使用 **PA0 / TIM2_CH1**。
 - 舵机不得由 STM32 GPIO、3.3 V 引脚或 USB-TTL 供电。
 - 独立 5 V GND、STM32 GND、USB-TTL GND 必须连在一起。
 
@@ -61,7 +67,7 @@ python pc\serial_test.py
 脚本会自动识别 CH340。如需明确指定：
 
 ```powershell
-python pc\serial_test.py --port COM9
+python pc\serial_test.py --port COM3
 ```
 
 4. 无需输入任何动作命令。脚本只执行安全回中：
@@ -74,7 +80,7 @@ CH1 / PA0 → 1500 us（中心）
 可以显式执行三位置测试：
 
 ```powershell
-python pc\serial_test.py --port COM9 --positions
+python pc\serial_test.py --port COM3 --positions
 ```
 
 执行顺序为：
@@ -111,7 +117,7 @@ USB-TTL 的 VCC 不接，舵机不能从 STM32 或 CH340 取电。
 如果自动识别失败，运行 `python -m serial.tools.list_ports` 查看端口，然后使用
 `--port COMx` 指定，不需要再修改源码。
 
-## 最终视觉分拣程序
+## 最终视觉分拣流程
 
 最终入口是 `pc/visual_sort.py`。视觉核心保留已验证的 ROI、背景差分、
 最大连通区域和原有单件锁定。分类按已验证的原始外轮廓顶点方案执行：
